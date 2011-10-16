@@ -97,7 +97,7 @@ startIndexer retrieve generate indexes =
        tid   <- forkIO $ forever $
                 do takeMVar dirtyMV
                    -- liftIO (logM "SeeReason.Search" WARNING "Search index update starting")
-                   -- |Invoke the AllReason method with a dummy indexer value so
+                   -- Invoke the AllReason method with a dummy indexer value so
                    -- we can retrieve the database and initialize the SearchIndex.
                    sr <- retrieve
                    atomically $ readTVar indexTVar >>= \ idx ->
