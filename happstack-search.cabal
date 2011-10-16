@@ -1,0 +1,21 @@
+Name:             happstack-search
+Version:          0.1
+License:          BSD3
+Author:           jeremy@seereason.com
+Maintainer:       partners@seereason.com
+
+Synopsis:         Support for running a search indexer in a thread.
+
+Exposed-Modules:  Happstack.Search
+                  
+Build-Depends:    base < 5, containers, hsp, mtl, stm, text, web-routes
+
+Build-Type:       Simple
+Category:         Web, Language
+Extensions:             MultiParamTypeClasses,
+                        TypeFamilies,
+                        FlexibleContexts,
+                        FlexibleInstances,
+                        TypeSynonymInstances,
+                        OverlappingInstances,
+                        UndecidableInstances
