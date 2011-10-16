@@ -19,15 +19,13 @@ import Control.Concurrent.STM.TVar
 import Control.Monad (forever)
 import Control.Monad.State (StateT, get)
 import Control.Monad.STM (atomically)
-import Control.Monad.Trans(MonadIO(liftIO), lift)
+import Control.Monad.Trans(MonadIO(liftIO))
 import qualified Data.List as List
 import Data.Map (Map)
 import Data.Maybe (fromMaybe, catMaybes)
 import qualified Data.Map as Map
 import qualified Data.Set as Set
 import qualified Data.Text as T
-import HSP (XMLGenT)
-import Web.Routes (MonadRoute(..))
 
 {-
 
@@ -85,9 +83,6 @@ data Indexer' indexes =
 class Monad m => MonadSearchIndex m indexes where
     askIndexer :: m (Maybe (Indexer' indexes))
 
-instance MonadSearchIndex m indexes => MonadSearchIndex (XMLGenT m) indexes where
-    askIndexer = lift askIndexer
-
 -- | MonadSearchIndex is a state monad maybe containing an Indexer.
 -- The indexer is optional so we can turn off indexing when necessary.
 instance Monad m => MonadSearchIndex (StateT (Maybe (Indexer' indexes)) m) indexes where
@@ -136,7 +131,7 @@ touch f =
              return ()
 
 -- | Search for a set of keywords in the map returned by the accessor.
-search :: forall m ident indexes. (MonadRoute m, MonadIO m, MonadSearchIndex m indexes, Eq ident) =>
+search :: forall m ident indexes. (MonadIO m, MonadSearchIndex m indexes, Eq ident) =>
           (indexes -> Map T.Text [(Int, ident)]) -> [T.Text] -> m [(Int, ident)]
 search accessor keywords =
     askIndexer >>= maybe (error "No search index") search'

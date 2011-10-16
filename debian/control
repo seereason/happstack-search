@@ -7,22 +7,16 @@ Build-Depends: debhelper (>= 7.0),
                cdbs,
                ghc,
                ghc-prof,
-               libghc-hsp-dev,
-               libghc-hsp-prof,
                libghc-mtl-dev,
                libghc-mtl-prof,
                libghc-stm-dev,
                libghc-stm-prof,
                libghc-text-dev,
-               libghc-text-prof,
-               libghc-web-routes-dev,
-               libghc-web-routes-prof
+               libghc-text-prof
 Build-Depends-Indep: ghc-doc,
-                     libghc-hsp-doc,
                      libghc-mtl-doc,
                      libghc-stm-doc,
-                     libghc-text-doc,
-                     libghc-web-routes-doc
+                     libghc-text-doc
 Standards-Version: 3.9.1
 Homepage: http://hackage.haskell.org/package/happstack-search
 

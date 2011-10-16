@@ -8,7 +8,7 @@ Synopsis:         Support for running a search indexer in a thread.
 
 Exposed-Modules:  Happstack.Search
                   
-Build-Depends:    base < 5, containers, hsp, mtl, stm, text, web-routes
+Build-Depends:    base < 5, containers, mtl, stm, text
 
 Build-Type:       Simple
 Category:         Web, Language
